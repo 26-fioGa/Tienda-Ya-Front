@@ -25,19 +25,39 @@ import { removeItem } from "../../actions/CarritoCompraAction";
 
 const CarritoCompras = (props) => {
   const [{ sesionCarritoCompra }, dispatch] = useStateValue();
-
-  console.log("sesionCarritoCompra", sesionCarritoCompra);
+  const [{ sesionUsuario }, dispatch1] = useStateValue();
 
   const miArray = sesionCarritoCompra
     ? sesionCarritoCompra.items
     : []; /*productoArray;*/
   let suma = 0;
   miArray.forEach((prod) => {
-    suma += prod.precio;
+    suma += prod.precio * prod.cantidad;
   });
 
   const realizarCompra = () => {
-    props.history.push("/procesoCompra");
+    if (sesionCarritoCompra.items.length > 0) {
+      if (sesionUsuario.autenticado) {
+        props.history.push("/procesoCompra");
+      } else {
+        dispatch({
+          type: "OPEN_SNACKBAR",
+          openMensaje: {
+            open: true,
+            mensaje: "Debes iniciar sesión para comenzar a comprar.",
+          },
+        });
+        props.history.push("/login");
+      }
+    } else {
+      dispatch({
+        type: "OPEN_SNACKBAR",
+        openMensaje: {
+          open: true,
+          mensaje: "Tu carrito de compras está vacío.",
+        },
+      });
+    }
   };
 
   const eliminarItemCarrito = async (itemId) => {
@@ -102,7 +122,7 @@ const CarritoCompras = (props) => {
               SUBTOTAL ({miArray.length}) PRODUCTOS
             </Typography>
             <Typography className={classes.text_title}>
-              ${Math.round(suma * 100) / 100}
+              ${Math.round(suma)}
             </Typography>
             <Divider className={classes.gridmb} />
             <Button
