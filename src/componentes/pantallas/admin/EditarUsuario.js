@@ -71,7 +71,7 @@ const EditarUsuario = (props) => {
                     <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
                         <TextField 
                         label="Nombre"
-                        variant="filled"
+                        variant="standard"
                         fullWidth
                         value={usuario.nombre + ' ' + usuario.apellido}
                         disabled
@@ -79,7 +79,7 @@ const EditarUsuario = (props) => {
                         />
                         <TextField 
                         label="Correo Electronico"
-                        variant="filled"
+                        variant="standard"
                         fullWidth
                         value={usuario.email}
                         disabled
@@ -95,6 +95,7 @@ const EditarUsuario = (props) => {
                         <Button
                         variant="contained"
                         color="primary"
+                        className={classes.button} 
                         onClick={actualizarRoleUsuario}
                         >
                             Actualizar

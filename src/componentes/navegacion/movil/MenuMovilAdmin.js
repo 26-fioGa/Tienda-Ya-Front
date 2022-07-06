@@ -13,7 +13,7 @@ import { Link, withRouter } from "react-router-dom";
 import useStyles from "../../../theme/useStyles";
 import { useStateValue } from "../../../contexto/store";
 
-const MenuMovil = (props) => {
+const MenuMovilAdmin = (props) => {
   const imagenDefault =
     "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
   const [{ sesionUsuario }, dispatch] = useStateValue();
@@ -103,21 +103,63 @@ const MenuMovil = (props) => {
           <Divider />
         </List>
       </Collapse>
-
-      <ListItem
-        button
-        onClick={props.clickHandler}
-        className={classes.listItem}
-      >
-        <Link className={classes.linkAppBarMobile} to="/admin/listaPedidos">
+      {/* admin */}
+      <ListItem button onClick={handleClickAdmin} className={classes.listItem}>
+        <div className={classes.linkAppBarMobile}>
           <ListItemIcon className={classes.listItemIcon}>
-            <Icon>shopping_cart</Icon>
+            <Icon>admin_panel_settings</Icon>
           </ListItemIcon>
-          <ListItemText>Mis Pedidos</ListItemText>
-        </Link>
+          <ListItemText>Admin</ListItemText>
+          <Icon>keyboard_arrow_down</Icon>
+        </div>
       </ListItem>
+      <Collapse component="li" in={openAdmin} timeout="auto" unmountOnExit>
+        <List disablePadding>
+          <ListItem
+            button
+            onClick={props.clickHandler}
+            className={classes.listSubItem}
+          >
+            <Link className={classes.linkAppBarMobile} to="/admin/usuarios">
+              <ListItemIcon className={classes.listItemIcon}>
+                <Icon>group</Icon>
+              </ListItemIcon>
+              <ListItemText>Usuarios</ListItemText>
+            </Link>
+          </ListItem>
+          <ListItem
+            button
+            onClick={props.clickHandler}
+            className={classes.listSubItem}
+          >
+            <Link
+              className={classes.linkAppBarMobile}
+              to="/admin/listaProductos"
+            >
+              <ListItemIcon className={classes.listItemIcon}>
+                <Icon>storefront</Icon>
+              </ListItemIcon>
+              <ListItemText>Productos</ListItemText>
+            </Link>
+          </ListItem>
+          <ListItem
+            button
+            onClick={props.clickHandler}
+            className={classes.listSubItem}
+          >
+            <Link className={classes.linkAppBarMobile} to="/">
+              <ListItemIcon className={classes.listItemIcon}>
+                <Icon>shopping_cart</Icon>
+              </ListItemIcon>
+              <ListItemText>Pedidos</ListItemText>
+            </Link>
+          </ListItem>
+          <Divider />
+        </List>
+      </Collapse>
+      {/* fin admin */}
     </>
   );
 };
 
-export default withRouter(MenuMovil);
+export default withRouter(MenuMovilAdmin);

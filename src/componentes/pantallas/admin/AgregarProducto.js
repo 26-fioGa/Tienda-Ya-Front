@@ -14,76 +14,68 @@ import React from "react";
 import useStyles from "../../../theme/useStyles";
 import ImageUploader from "react-images-upload";
 import { registrarProducto } from "../../../actions/ProductoAction";
-import {v4 as uuidv4} from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 const AgregarProducto = (props) => {
-    const imagenDefault = "https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000";
-    const [producto, setProducto] = React.useState({
-        id: 0,
-        nombre: '',
-        descripcion: '',
-        stock: 0,
-        marcaId: 0,
-        categoriaId:0,
-        precio: 0.0,
-        imagen: '',
-        file: '',
-        imagenTemporal: null
-    });
+  const imagenDefault =
+    "https://firebasestorage.googleapis.com/v0/b/ecommerce-c0adb.appspot.com/o/images%2Fdefault.png?alt=media&token=122c101e-9ecd-48e6-9c21-3af821371de8";
+  const [producto, setProducto] = React.useState({
+    id: 0,
+    nombre: "",
+    descripcion: "",
+    stock: 0,
+    marcaId: 0,
+    categoriaId: 0,
+    precio: 0.0,
+    imagen: "",
+    file: "",
+    imagenTemporal: null,
+  });
 
-    const [categoria, setCategoria] = React.useState("");
-    const [marca, setMarca] = React.useState("");
+  const [categoria, setCategoria] = React.useState("");
+  const [marca, setMarca] = React.useState("");
 
-    const handleCategoriaChange = (event) => {
-        setCategoria(event.target.value);
+  const handleCategoriaChange = (event) => {
+    setCategoria(event.target.value);
+  };
+
+  const handleMarcaChange = (event) => {
+    setMarca(event.target.value);
+  };
+
+  const guardarProducto = async () => {
+    producto.categoriaId = categoria;
+    producto.marcaId = marca;
+
+    const resultado = await registrarProducto(producto);
+
+    props.history.push("/admin/listaProductos");
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProducto((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const subirImagen = (imagenes) => {
+    let foto = imagenes[0];
+
+    let fotoUrl = "";
+    try {
+      fotoUrl = URL.createObjectURL(foto);
+    } catch (e) {
+      console.log(e);
     }
 
-    const handleMarcaChange = (event) => {
-        setMarca(event.target.value);
-    }
-
-
-    const guardarProducto = async () => {
-
-        producto.categoriaId = categoria;
-        producto.marcaId = marca;
-
-
-        
-        const resultado = await registrarProducto(producto);
-
-        props.history.push("/admin/listaProductos");
-
-    }
-
-
-    const handleChange = (e)  => {
-        const {name, value} = e.target;
-        setProducto( prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
-
-    const subirImagen = imagenes => {
-        let foto = imagenes[0];
-
-        let fotoUrl = "";
-        try{
-          fotoUrl = URL.createObjectURL(foto);
-
-        }catch(e){
-          console.log(e);
-        }
-
-        setProducto( prev => ({
-            ...prev,
-            file : foto,
-            imagenTemporal : fotoUrl
-        }))
-    }
-
+    setProducto((prev) => ({
+      ...prev,
+      file: foto,
+      imagenTemporal: fotoUrl,
+    }));
+  };
 
   const classes = useStyles();
 
@@ -99,7 +91,7 @@ const AgregarProducto = (props) => {
           <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
             <TextField
               label="Nombre Producto"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
@@ -111,7 +103,7 @@ const AgregarProducto = (props) => {
             />
             <TextField
               label="Precio"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
@@ -121,10 +113,10 @@ const AgregarProducto = (props) => {
               value={producto.precio}
               onChange={handleChange}
             />
-          
+
             <TextField
               label="Stock"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
@@ -136,7 +128,7 @@ const AgregarProducto = (props) => {
             />
             <TextField
               label="Descripcion"
-              variant="outlined"
+              variant="standard"
               multiline
               rows={4}
               fullWidth
@@ -149,38 +141,33 @@ const AgregarProducto = (props) => {
               onChange={handleChange}
             />
 
-              <FormControl className={classes.formControl}>
-                <InputLabel id="marca-select-label">Marca</InputLabel>
-                <Select 
-                    labelId="marca-select-label"
-                    id="marca-select"
-                    value={marca}
-                    onChange={handleMarcaChange}
-                >
-                    <MenuItem value={1}>Nike</MenuItem>
-                    <MenuItem value={2}>Adidas</MenuItem>
-                    <MenuItem value={3}>Maldiva</MenuItem>
-                </Select>
-              </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="marca-select-label">Marca</InputLabel>
+              <Select
+                labelId="marca-select-label"
+                id="marca-select"
+                value={marca}
+                onChange={handleMarcaChange}
+              >
+                <MenuItem value={1}>Nike</MenuItem>
+                <MenuItem value={2}>Adidas</MenuItem>
+                <MenuItem value={3}>Maldiva</MenuItem>
+              </Select>
+            </FormControl>
 
-              <FormControl className={classes.formControl}>
-                <InputLabel id="categoria-select-label">Categoria</InputLabel>
-                <Select 
-                    labelId="categoria-select-label"
-                    id="categoria-select"
-                    value={categoria}
-                    onChange={handleCategoriaChange}
-                >
-                    <MenuItem value={1}>Verano</MenuItem>
-                    <MenuItem value={2}>Invierno</MenuItem>
-                    <MenuItem value={3}>Primavera</MenuItem>
-                </Select>
-              </FormControl>              
-
-
-
-              
-
+            <FormControl className={classes.formControl}>
+              <InputLabel id="categoria-select-label">Categoria</InputLabel>
+              <Select
+                labelId="categoria-select-label"
+                id="categoria-select"
+                value={categoria}
+                onChange={handleCategoriaChange}
+              >
+                <MenuItem value={1}>Verano</MenuItem>
+                <MenuItem value={2}>Invierno</MenuItem>
+                <MenuItem value={3}>Primavera</MenuItem>
+              </Select>
+            </FormControl>
 
             <Grid container spacing={2}>
               <Grid item sm={6} xs={12}>
@@ -195,9 +182,11 @@ const AgregarProducto = (props) => {
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <Avatar variant="square" className={classes.avatarProducto} 
-                  src = {
-                      producto.imagenTemporal
+                <Avatar
+                  variant="square"
+                  className={classes.avatarProducto}
+                  src={
+                    producto.imagenTemporal
                       ? producto.imagenTemporal
                       : imagenDefault
                   }
@@ -205,7 +194,12 @@ const AgregarProducto = (props) => {
               </Grid>
             </Grid>
 
-            <Button variant="contained" color="primary" onClick={guardarProducto} >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={guardarProducto}
+              className={classes.button}
+            >
               AGREGAR
             </Button>
           </form>
