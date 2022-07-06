@@ -112,7 +112,6 @@ const RegistrarUsuario = (props) => {
                                 <Grid item md={12} xs={12} className={classes.gridmb}>
                                     <Button
                                     variant="contained" 
-                                    fullWidth 
                                     color="primary"
                                     onClick={guardarUsuario}
                                     type="submit"

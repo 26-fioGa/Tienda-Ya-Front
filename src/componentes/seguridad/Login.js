@@ -95,7 +95,6 @@ const Login = (props) => {
                 <Grid item xs={12} className={classes.gridmb}>
                   <Button
                     variant="contained"
-                    fullWidth
                     color="primary"
                     type="submit"
                     className={classes.button}
