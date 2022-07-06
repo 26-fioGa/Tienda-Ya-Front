@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { accesoUsuario } from "../../data/usuarios";
 import { loginUsuario } from "../../actions/UsuarioAction";
 import { useStateValue } from "../../contexto/store";
+import { getUsuarioById } from "../../actions/UsuarioAction";
 
 const clearUsuario = {
   email: "",
@@ -40,6 +41,7 @@ const Login = (props) => {
     loginUsuario(usuario, dispatch).then((response) => {
       if (response.status === 200) {
         window.localStorage.setItem("token", response.data.token);
+
         props.history.push("/");
       } else {
         dispatch({
