@@ -57,16 +57,7 @@ export const addItem = (carrito, item, dispatch) => {
 };
 
 export const removeItem = (carrito, item, dispatch) => {
-  if (!carrito.items) {
-    carrito.items = [];
-  }
+  carrito.items = carrito.items.filter((item1) => item1.id !== item);
 
-  const indice = carrito.items.findIndex((i) => i.id === item.id);
-
-  if (indice === -1) {
-    carrito.items.push(item);
-  } else {
-    carrito.items[indice].cantidad -= item.cantidad;
-  }
   setCarritoCompra(dispatch, carrito);
 };

@@ -21,6 +21,7 @@ import React from "react";
 import { useStateValue } from "../../contexto/store";
 import { productoArray } from "../../data/dataPrueba";
 import useStyles from "../../theme/useStyles";
+import { removeItem } from "../../actions/CarritoCompraAction";
 
 const CarritoCompras = (props) => {
   const [{ sesionCarritoCompra }, dispatch] = useStateValue();
@@ -37,6 +38,10 @@ const CarritoCompras = (props) => {
 
   const realizarCompra = () => {
     props.history.push("/procesoCompra");
+  };
+
+  const eliminarItemCarrito = async (itemId) => {
+    await removeItem(sesionCarritoCompra, itemId, dispatch);
   };
 
   const classes = useStyles();
@@ -80,7 +85,7 @@ const CarritoCompras = (props) => {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <IconButton>
+                      <IconButton onClick={() => eliminarItemCarrito(item.id)}>
                         <Icon>delete</Icon>
                       </IconButton>
                     </TableCell>
