@@ -16,7 +16,7 @@ const ListaPedidos = (props) => {
     }
     return (
         <Container className={classes.containermt}>
-            <Typography variant="h4" className={classes.text_title}>
+            <Typography variant="h6" className={classes.text_title}>
                 PEDIDOS
             </Typography>
             <TableContainer>
@@ -47,7 +47,8 @@ const ListaPedidos = (props) => {
                             <TableCell>
                                 <Button
                                 variant="contained"
-                                color="inherit"
+                                color="primary"
+                                className={classes.button}
                                 onClick={verDetalle}>{/*  */}
                                     DETALLES
                                 </Button>
@@ -67,7 +68,8 @@ const ListaPedidos = (props) => {
                             <TableCell>
                                 <Button
                                 variant="contained"
-                                color="inherit"
+                                color="primary"
+                                className={classes.button}
                                 onClick={verDetalle}>{/*  */}
                                     DETALLES
                                 </Button>

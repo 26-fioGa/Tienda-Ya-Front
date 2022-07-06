@@ -68,7 +68,7 @@ const ListaProductos = (props) => {
                 <Grid item lg={6} sm={6} xs={12}>
                     <Button
                     variant="contained"
-                    color="inherit"
+                    color="primary"
                     className={classes.buttonAgregar}
                     onClick={agregarProducto}
                     >
