@@ -52,6 +52,7 @@ const ProcesoCompra = (props) => {
                         <Grid item xs={12}>
                             <TextField
                             label="Direccion"
+                            variant="standard" 
                             fullWidth
                             InputLabelProps={{ 
                                 shrink: true, 
@@ -61,6 +62,7 @@ const ProcesoCompra = (props) => {
                         <Grid item xs={12}>
                             <TextField
                             label="Ciudad"
+                            variant="standard" 
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
@@ -70,6 +72,7 @@ const ProcesoCompra = (props) => {
                         <Grid item xs={12}>
                             <TextField
                             label="Pais"
+                            variant="standard" 
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
@@ -112,12 +115,14 @@ const ProcesoCompra = (props) => {
                             variant="contained"
                             color="primary"
                             className={classes.buttonAnterior}
+                            className={classes.button}
                             onClick={retrocederProceso}
                             >
                                 ANTERIOR
                             </Button>
                             <Button
                             variant="contained"
+                            className={classes.button}
                             color="primary"
                             onClick={continuarProceso}
                             >

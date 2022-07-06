@@ -1,4 +1,4 @@
-import { Avatar, Button, Container, Divider, Grid, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@material-ui/core';
+import { Avatar, Button, Container,Card, Divider, Grid, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from '../../theme/useStyles';
 import ImageUploader from 'react-images-upload';
@@ -81,81 +81,83 @@ const Perfil = (props) => {
         <Container className={classes.containermt}>
             <Grid container spacing={2}>
                 <Grid item md={3} xs={12}>
-                    <Typography variant="h6" className={classes.text_title}>
-                        PERFIL DE USUARIO
-                    </Typography>
-                    <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
-                        <ImageUploader
-                        key={keyImage}
-                        onChange={subirImagen}
-                        withIcon={false}
-                        buttonStyles={{borderRadius: "50%", padding: 10, margin: 0,
-                        position: "absolute", bottom: 15, left: 15}}
-                        className={classes.imageUploader}
-                        buttonText={<Icon>add_a_photo</Icon>}
-                        label={
-                        <Avatar alt="Mi Perfil" className={classes.avatarPefil}
-                            src = {
-                                usuario.imagenTemporal
-                                ? usuario.imagenTemporal
-                                : ( usuario.imagen ? usuario.imagen : imagenDefault)
-                            }
-                        />
-                        }
-                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                        maxFileSize={5242880}
-                        />
-                        <TextField
-                        label="Nombre"
-                        variant="standard"
-                        fullWidth
-                        className={classes.gridmb}
-                        name="nombre"
-                        value={usuario.nombre}
-                        onChange={handleChange}
-                        />
-                        <TextField
-                        label="Apellidos"
-                        variant="standard" 
-                        fullWidth
-                        className={classes.gridmb}
-                        name="apellido"
-                        value={usuario.apellido}
-                        onChange={handleChange}
-                        />
-                        <TextField
-                        label="Correo Electronico"
-                        variant="standard"
-                        fullWidth
-                        className={classes.gridmb}
-                        value={usuario.email}
-                        name="email"
-                        onChange={handleChange}
-                        />
-                        <Divider className={classes.divider}/>
-                        <TextField
-                        label="Password"
-                        variant="standard" 
-                        fullWidth
-                        className={classes.gridmb}
-                        name="password"
-                       
-                        />
-                        <TextField
-                        label="Confirmar Password"
-                        variant="standard"
-                        fullWidth
-                        className={classes.gridmb}
-                        />
-                        <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={guardarUsuario}
-                        className={classes.button}
-                        >
-                            ACTUALIZAR
-                        </Button>
-                    </form>
+                    <Card className={classes.card} align="center">
+                                <Typography variant="h6" className={classes.text_title}>
+                                    PERFIL DE USUARIO
+                                </Typography>
+                                <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
+                                    <ImageUploader
+                                    key={keyImage}
+                                    onChange={subirImagen}
+                                    withIcon={false}
+                                    buttonStyles={{borderRadius: "50%", padding: 10, margin: 0,
+                                    position: "absolute", bottom: 15, left: 15}}
+                                    className={classes.imageUploader}
+                                    buttonText={<Icon>add_a_photo</Icon>}
+                                    label={
+                                    <Avatar alt="Mi Perfil" className={classes.avatarPefil}
+                                        src = {
+                                            usuario.imagenTemporal
+                                            ? usuario.imagenTemporal
+                                            : ( usuario.imagen ? usuario.imagen : imagenDefault)
+                                        }
+                                    />
+                                    }
+                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                    maxFileSize={5242880}
+                                    />
+                                    <TextField
+                                    label="Nombre"
+                                    variant="standard"
+                                    fullWidth
+                                    className={classes.gridmb}
+                                    name="nombre"
+                                    value={usuario.nombre}
+                                    onChange={handleChange}
+                                    />
+                                    <TextField
+                                    label="Apellidos"
+                                    variant="standard" 
+                                    fullWidth
+                                    className={classes.gridmb}
+                                    name="apellido"
+                                    value={usuario.apellido}
+                                    onChange={handleChange}
+                                    />
+                                    <TextField
+                                    label="Correo Electronico"
+                                    variant="standard"
+                                    fullWidth
+                                    className={classes.gridmb}
+                                    value={usuario.email}
+                                    name="email"
+                                    onChange={handleChange}
+                                    />
+                                    <Divider className={classes.divider}/>
+                                    <TextField
+                                    label="Password"
+                                    variant="standard" 
+                                    fullWidth
+                                    className={classes.gridmb}
+                                    name="password"
+                                
+                                    />
+                                    <TextField
+                                    label="Confirmar Password"
+                                    variant="standard"
+                                    fullWidth
+                                    className={classes.gridmb}
+                                    />
+                                    <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={guardarUsuario}
+                                    className={classes.button}
+                                    >
+                                        ACTUALIZAR
+                                    </Button>
+                                </form>
+                    </Card>                    
                 </Grid>
                 <Grid item md={9} xs={12}>
                     <Typography variant="h6" className={classes.text_title}>

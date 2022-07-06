@@ -1,5 +1,7 @@
-import { Button, CardMedia, Container, Grid, MenuItem, Paper, Select, Table, TableBody, 
-    TableCell, TableContainer, TableRow, TextField, Typography } from '@material-ui/core';
+import {
+    Button, CardMedia, Container, Grid, MenuItem, Paper, Select, Table, TableBody,
+    TableCell, TableContainer, TableRow, TextField, Typography
+} from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { addItem } from '../../actions/CarritoCompraAction';
 import { getProducto } from '../../actions/ProductoAction';
@@ -7,23 +9,23 @@ import { useStateValue } from '../../contexto/store';
 import useStyles from '../../theme/useStyles';
 
 const DetalleProducto = (props) => {
-    const [ {sesionCarritoCompra}, dispatch ] = useStateValue();
+    const [{ sesionCarritoCompra }, dispatch] = useStateValue();
     const [cantidad, setCantidad] = useState(1);
 
     const [productoSeleccionado, setProductoSeleccionado] = useState({
         id: 0,
         nombre: "",
-        descripcion:"",
+        descripcion: "",
         stock: 0,
         marcaId: 0,
         marcaNombre: "",
-        categoriaId:0,
-        categoriaNombre:"",
+        categoriaId: 0,
+        categoriaNombre: "",
         precio: 0.0,
         imagen: ""
     });
 
-    useEffect(() =>{
+    useEffect(() => {
         const id = props.match.params.id;
         const getProductoAsync = async () => {
             const response = await getProducto(id);
@@ -41,7 +43,7 @@ const DetalleProducto = (props) => {
             imagen: productoSeleccionado.imagen,
             marca: productoSeleccionado.marcaNombre,
             categoria: productoSeleccionado.categoriaNombre
-        };    
+        };
 
         await addItem(sesionCarritoCompra, item, dispatch);
 
@@ -52,15 +54,15 @@ const DetalleProducto = (props) => {
     return (
         <Container className={classes.containermt}>
             <Typography variant="h4" className={classes.text_title}>
-               { productoSeleccionado.nombre }
+                {productoSeleccionado.nombre}
             </Typography>
             <Grid container spacing={4}>
                 <Grid item lg={8} md={8} xs={12}>
                     <Paper className={classes.PaperImg} variant="outlined" square>
                         <CardMedia
-                        className={classes.mediaDetalle}
-                        image= {productoSeleccionado.imagen ? productoSeleccionado.imagen : "https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000" }  
-                        title={productoSeleccionado.descripcion}
+                            className={classes.mediaDetalle}
+                            image={productoSeleccionado.imagen ? productoSeleccionado.imagen : "https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000"}
+                            title={productoSeleccionado.descripcion}
                         />
                     </Paper>
                 </Grid>
@@ -82,9 +84,10 @@ const DetalleProducto = (props) => {
                                         <Typography variant="subtitle2">Cantidad</Typography>
                                     </TableCell>
                                     <TableCell>
-                                       <TextField
+                                        <TextField
                                             id="cantidad-producto"
                                             label=""
+                                            variant="standard" 
                                             type="number"
                                             value={cantidad}
                                             onChange={event => setCantidad(event.target.value)}
@@ -92,18 +95,19 @@ const DetalleProducto = (props) => {
                                             InputLabelProps={{
                                                 shrink: true
                                             }}
-                                       />
+                                        />
 
-                                       
+
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={2}>
                                         <Button
-                                        variant="contained"
-                                        color="primary"
-                                        size="large"
-                                        onClick={agregarCarrito}
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            className={classes.button}
+                                            onClick={agregarCarrito}
                                         >Agregar a Carrito
                                         </Button>
                                     </TableCell>
@@ -112,7 +116,7 @@ const DetalleProducto = (props) => {
                         </Table>
                     </TableContainer>
                 </Grid>
-                
+
                 <Grid item lg={8} md={8} xs={12}>
                     <Grid container spacing={2}>
                         <Grid item md={6}>
@@ -131,13 +135,13 @@ const DetalleProducto = (props) => {
                         </Grid>
                         <Grid item md={6}>
                             <Typography className={classes.text_detalle}>
-                                Descripcion: 
+                                Descripcion:
                             </Typography>
                             <Typography className={classes.text_detalle}>
                                 {productoSeleccionado.descripcion}
                             </Typography>
                         </Grid>
-                    </Grid>     
+                    </Grid>
                 </Grid>
             </Grid>
         </Container>

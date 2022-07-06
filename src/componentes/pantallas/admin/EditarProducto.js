@@ -95,7 +95,7 @@ const EditarProducto = (props) => {
                     <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
                         <TextField
                         label="Nombre Producto"
-                        variant="outlined"
+                        variant="standard" 
                         fullWidth
                         className={classes.gridmb}
                         /* para que el label se mantenga en la parte superior */
@@ -108,7 +108,7 @@ const EditarProducto = (props) => {
                         />
                         <TextField
                         label="Precio"
-                        variant="outlined"
+                        variant="standard" 
                         fullWidth
                         className={classes.gridmb}
                         InputLabelProps={{
@@ -121,7 +121,7 @@ const EditarProducto = (props) => {
                         
                         <TextField
                         label="Stock"
-                        variant="outlined"
+                        variant="standard" 
                         fullWidth
                         className={classes.gridmb}
                         InputLabelProps={{
@@ -133,7 +133,7 @@ const EditarProducto = (props) => {
                         />
                         <TextField
                         label="Descripcion"
-                        variant="outlined"
+                        variant="standard" 
                         multiline
                         rows={4}
                         fullWidth
@@ -204,6 +204,7 @@ const EditarProducto = (props) => {
                         variant="contained"
                         color="primary"
                         onClick={guardarProducto}
+                        className={classes.button} 
                         >
                             ACTUALIZAR
                         </Button>
