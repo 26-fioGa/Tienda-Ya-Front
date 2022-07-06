@@ -8,6 +8,8 @@ import {
   FormLabel,
   Grid,
   Paper,
+  Icon,
+  IconButton,
   Radio,
   RadioGroup,
   Step,
@@ -23,10 +25,11 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import useStyles from "../../theme/useStyles";
+import { useStateValue } from "../../contexto/store";
 
 const ProcesoCompra = (props) => {
   const [activeStep, setActiveStep] = useState(1);
-
+  const [{ sesionCarritoCompra }, dispatch] = useStateValue();
   const continuarProceso = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -39,6 +42,13 @@ const ProcesoCompra = (props) => {
     const idCompra = "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed";
     props.history.push("/ordenCompra/" + idCompra);
   };
+  const miArray = sesionCarritoCompra
+    ? sesionCarritoCompra.items
+    : []; /*productoArray;*/
+  let suma = 0;
+  miArray.forEach((prod) => {
+    suma += prod.precio;
+  });
 
   const classes = useStyles();
   return (
@@ -123,7 +133,12 @@ const ProcesoCompra = (props) => {
                   <FormControlLabel
                     value="PayPal"
                     control={<Radio color="primary" />}
-                    label="PayPal o Tarjeta"
+                    label="PayPal"
+                  />
+                  <FormControlLabel
+                    value="Tarjeta"
+                    control={<Radio color="primary" />}
+                    label="Tarjeta"
                   />
                 </RadioGroup>
               </FormControl>
@@ -167,25 +182,36 @@ const ProcesoCompra = (props) => {
             <TableContainer className={classes.gridmb}>
               <Table>
                 <TableBody>
-                  <TableRow>
-                    <TableCell>
-                      <CardMedia
-                        className={classes.imgProductoPC}
-                        image="https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000"
-                        title="Imagen en Carrito"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography className={classes.text_detalle}>
-                        Abrigo Vaxi Moda 2020
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography className={classes.text_detalle}>
-                        2 x $25.00 = $50.00
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
+                  {miArray.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell>
+                        <CardMedia
+                          className={classes.imgProductoCC}
+                          image={
+                            item.imagen
+                              ? item.imagen
+                              : "https://firebasestorage.googleapis.com/v0/b/ecommerce-c0adb.appspot.com/o/images%2Fdefault.png?alt=media&token=122c101e-9ecd-48e6-9c21-3af821371de8"
+                          }
+                          title={item.producto}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Typography className={classes.text_detalle}>
+                          {item.producto}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography className={classes.text_detalle}>
+                          ${item.precio}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography className={classes.text_detalle}>
+                          {item.cantidad}
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -217,7 +243,7 @@ const ProcesoCompra = (props) => {
                     </TableCell>
                     <TableCell>
                       <Typography className={classes.text_detalle}>
-                        $50.00
+                        ${Math.round(suma * 100) / 100}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -253,7 +279,7 @@ const ProcesoCompra = (props) => {
                     </TableCell>
                     <TableCell>
                       <Typography className={classes.text_detalle}>
-                        $60.00
+                        ${Math.round(suma * 100) / 100 + 2 + 8}
                       </Typography>
                     </TableCell>
                   </TableRow>
