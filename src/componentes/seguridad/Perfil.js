@@ -81,7 +81,7 @@ const Perfil = (props) => {
         <Container className={classes.containermt}>
             <Grid container spacing={2}>
                 <Grid item md={3} xs={12}>
-                    <Typography variant="h5" className={classes.text_title}>
+                    <Typography variant="h6" className={classes.text_title}>
                         PERFIL DE USUARIO
                     </Typography>
                     <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
@@ -107,7 +107,7 @@ const Perfil = (props) => {
                         />
                         <TextField
                         label="Nombre"
-                        variant="outlined" 
+                        variant="standard"
                         fullWidth
                         className={classes.gridmb}
                         name="nombre"
@@ -116,7 +116,7 @@ const Perfil = (props) => {
                         />
                         <TextField
                         label="Apellidos"
-                        variant="outlined" 
+                        variant="standard" 
                         fullWidth
                         className={classes.gridmb}
                         name="apellido"
@@ -125,7 +125,7 @@ const Perfil = (props) => {
                         />
                         <TextField
                         label="Correo Electronico"
-                        variant="outlined" 
+                        variant="standard"
                         fullWidth
                         className={classes.gridmb}
                         value={usuario.email}
@@ -135,7 +135,7 @@ const Perfil = (props) => {
                         <Divider className={classes.divider}/>
                         <TextField
                         label="Password"
-                        variant="outlined" 
+                        variant="standard" 
                         fullWidth
                         className={classes.gridmb}
                         name="password"
@@ -143,7 +143,7 @@ const Perfil = (props) => {
                         />
                         <TextField
                         label="Confirmar Password"
-                        variant="outlined" 
+                        variant="standard"
                         fullWidth
                         className={classes.gridmb}
                         />
@@ -151,13 +151,14 @@ const Perfil = (props) => {
                         variant="contained"
                         color="primary"
                         onClick={guardarUsuario}
+                        className={classes.button}
                         >
                             ACTUALIZAR
                         </Button>
                     </form>
                 </Grid>
                 <Grid item md={9} xs={12}>
-                    <Typography variant="h5" className={classes.text_title}>
+                    <Typography variant="h6" className={classes.text_title}>
                         MIS PEDIDOS
                     </Typography>
                     <TableContainer className={classes.form}>
@@ -189,7 +190,9 @@ const Perfil = (props) => {
                                     <TableCell>
                                         <Button
                                         variant="contained"
-                                        onClick={verDetalles}>
+                                        onClick={verDetalles}
+                                        color="primary"
+                                        className={classes.button}>
                                             DETALLES
                                         </Button>
                                     </TableCell>

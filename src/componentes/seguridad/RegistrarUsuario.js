@@ -58,7 +58,7 @@ const RegistrarUsuario = (props) => {
                                 <Grid item md={6} xs={12} className={classes.gridmb}>
                                     <TextField
                                     label="Nombre" 
-                                    variant="outlined" 
+                                    variant="standard" 
                                     fullWidth
                                     name="nombre"
                                     value={usuario.nombre}
@@ -68,7 +68,7 @@ const RegistrarUsuario = (props) => {
                                 <Grid item md={6} xs={12} className={classes.gridmb}>
                                     <TextField
                                     label="Apellidos" 
-                                    variant="outlined" 
+                                    variant="standard"
                                     fullWidth
                                     name="apellido"
                                     value={usuario.apellido}
@@ -79,7 +79,7 @@ const RegistrarUsuario = (props) => {
                                 <Grid item md={12} xs={12} className={classes.gridmb}>
                                     <TextField
                                     label="Username" 
-                                    variant="outlined" 
+                                    variant="standard"
                                     fullWidth
                                     name="username"
                                     value={usuario.username}
@@ -90,7 +90,7 @@ const RegistrarUsuario = (props) => {
                                 <Grid item md={12} xs={12} className={classes.gridmb}>
                                     <TextField
                                     label="Email" 
-                                    variant="outlined" 
+                                    variant="standard"
                                     fullWidth
                                     type="email"
                                     name="email"
@@ -101,7 +101,7 @@ const RegistrarUsuario = (props) => {
                                 <Grid item md={12} xs={12} className={classes.gridmb}>
                                     <TextField
                                     label="Password" 
-                                    variant="outlined" 
+                                    variant="standard"
                                     fullWidth
                                     type="password"
                                     name="password"
@@ -116,6 +116,7 @@ const RegistrarUsuario = (props) => {
                                     color="primary"
                                     onClick={guardarUsuario}
                                     type="submit"
+                                    className={classes.button}
                                     >
                                     Registrar
                                     </Button>
@@ -128,6 +129,9 @@ const RegistrarUsuario = (props) => {
                             </Link>
                         </form>
                     </Card>
+                </Grid>
+                <Grid item lg={6} md={8}>
+                    <img className={classes.securityImage} src={require('../../img/registerImage.png').default} alt="loginImage" />
                 </Grid>
             </Grid>
         </Container>

@@ -1,17 +1,19 @@
-import { Button, CardMedia, Container, Divider, Grid, Paper, Table, TableBody, TableCell, 
-    TableContainer, TableRow, Typography } from '@material-ui/core';
+import {
+    Button, CardMedia, Container, Divider, Grid, Paper, Table, TableBody, TableCell,
+    TableContainer, TableRow, Typography
+} from '@material-ui/core';
 import React from 'react';
 import useStyles from '../../theme/useStyles';
 
 const OrdenCompra = (props) => {
-    const {id} = props.match.params;
+    const { id } = props.match.params;
     const mensajeEnvio = "No Entregado";
     const mensajePago = "Pagado en 2020-12-23";
     const classes = useStyles();
     return (
         <Container className={classes.containermt}>
-            <Typography variant="h5" className={classes.text_title}>
-                ORDEN DE COMPRA: {id.toUpperCase()} 
+            <Typography variant="h6" className={classes.text_title}>
+                ORDEN DE COMPRA: {id.toUpperCase()}
             </Typography>
             <Grid container spacing={2} className={classes.paperPadding}>
                 <Grid item md={8} xs={12}>
@@ -32,7 +34,7 @@ const OrdenCompra = (props) => {
                             {mensajeEnvio}
                         </Typography>
                     </div>
-                    <Divider className={classes.divider}/>
+                    <Divider className={classes.divider} />
                     <Typography variant="h6" className={classes.text_title}>
                         METODO DE PAGO
                     </Typography>
@@ -44,7 +46,7 @@ const OrdenCompra = (props) => {
                             {mensajePago}
                         </Typography>
                     </div>
-                    <Divider className={classes.divider}/>
+                    <Divider className={classes.divider} />
                     <Typography variant="h6" className={classes.text_title}>
                         PRODUCTOS
                     </Typography>
@@ -53,11 +55,11 @@ const OrdenCompra = (props) => {
                             <TableBody>
                                 <TableRow>
                                     <TableCell>
-                                    <CardMedia 
-                                    className={classes.imgProductoPC}
-                                    image="https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000"
-                                    title="Imagen en Carrito"
-                                    />
+                                        <CardMedia
+                                            className={classes.imgProductoPC}
+                                            image="https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000"
+                                            title="Imagen en Carrito"
+                                        />
                                     </TableCell>
                                     <TableCell>
                                         <Typography className={classes.text_detalle}>
@@ -74,7 +76,7 @@ const OrdenCompra = (props) => {
                         </Table>
                     </TableContainer>
                 </Grid>
-            
+
                 <Grid item md={4} xs={12}>
                     <TableContainer component={Paper} square>
                         <Table>
@@ -153,13 +155,14 @@ const OrdenCompra = (props) => {
                                         >
                                             Tarjeta de Credito o Debito
                                         </Button> */}
-                                        
+
                                         {/* Boton para el Admin */}
                                         <Button
-                                        variant="contained"
-                                        color="primary"
-                                        size="large"
-                                        fullWidth>
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.button}
+                                            size="large"
+                                            fullWidth>
                                             MARCAR COMO ENTREGADO
                                         </Button>
                                     </TableCell>
