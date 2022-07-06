@@ -20,7 +20,7 @@ import ListaPedidos from "./componentes/pantallas/admin/ListaPedidos";
 import { getUsuario } from "./actions/UsuarioAction";
 import { useStateValue } from "./contexto/store";
 import { v4 as uuidv4 } from "uuid";
-import {getCarritoCompra} from './actions/CarritoCompraAction';
+import { getCarritoCompra } from "./actions/CarritoCompraAction";
 
 function App() {
   const [{ sesionUsuario, openSnackbar }, dispatch] = useStateValue();
@@ -28,6 +28,7 @@ function App() {
   const [servidorRespuesta, setServidorRespuesta] = useState(false);
 
   useEffect(async () => {
+    console.log("xdasas");
     let carritoCompraId = window.localStorage.getItem("carrito");
 
     if (!carritoCompraId) {
@@ -37,37 +38,34 @@ function App() {
 
     if (!servidorRespuesta) {
       await getUsuario(dispatch);
-      
+
       await getCarritoCompra(dispatch, carritoCompraId);
       setServidorRespuesta(true);
     }
   }, [servidorRespuesta]);
 
-
-
   return (
     <ThemeProvider theme={theme}>
       <Snackbar
-        anchorOrigin= {{vertical: "bottom", horizontal:"center"}}
-        open = {openSnackbar ? openSnackbar.open : false}
-        autoHideDuration = {3000}
-        ContentProps={{"aria-describedby": "message-id"}}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={openSnackbar ? openSnackbar.open : false}
+        autoHideDuration={3000}
+        ContentProps={{ "aria-describedby": "message-id" }}
         message={
           <span id="message-id">
-              {openSnackbar ? openSnackbar.mensaje : ""}
+            {openSnackbar ? openSnackbar.mensaje : ""}
           </span>
         }
-        onClose = { () => 
-              dispatch({
-                type: "OPEN_SNACKBAR",
-                openMensaje: {
-                  open: false,
-                  mensaje: ""
-                }
-              })
+        onClose={() =>
+          dispatch({
+            type: "OPEN_SNACKBAR",
+            openMensaje: {
+              open: false,
+              mensaje: "",
+            },
+          })
         }
-      >
-      </Snackbar>
+      ></Snackbar>
       <Router>
         <MenuAppBar />
         <Switch>

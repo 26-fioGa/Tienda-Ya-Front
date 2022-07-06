@@ -30,6 +30,23 @@ import { useStateValue } from "../../contexto/store";
 const ProcesoCompra = (props) => {
   const [activeStep, setActiveStep] = useState(1);
   const [{ sesionCarritoCompra }, dispatch] = useStateValue();
+  const [metodoPago, setMetodoPago] = useState("PayPal");
+  const [envio, setEnvio] = useState({
+    direccion: "",
+    ciudad: "",
+    pais: "",
+  });
+  const handleChange1 = (event) => {
+    setMetodoPago(event.target.value);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEnvio((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const continuarProceso = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -47,7 +64,7 @@ const ProcesoCompra = (props) => {
     : []; /*productoArray;*/
   let suma = 0;
   miArray.forEach((prod) => {
-    suma += prod.precio;
+    suma += prod.precio * prod.cantidad;
   });
 
   const classes = useStyles();
@@ -86,6 +103,9 @@ const ProcesoCompra = (props) => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  name="direccion"
+                  value={envio.direccion}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -96,6 +116,9 @@ const ProcesoCompra = (props) => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  name="ciudad"
+                  value={envio.ciudad}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -106,6 +129,9 @@ const ProcesoCompra = (props) => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  name="pais"
+                  value={envio.pais}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -129,7 +155,11 @@ const ProcesoCompra = (props) => {
             <Grid item xs={12}>
               <FormControl className={classes.formControl}>
                 <FormLabel>Seleccione Metodo</FormLabel>
-                <RadioGroup>
+                <RadioGroup
+                  name="metodo"
+                  value={metodoPago}
+                  onChange={handleChange1}
+                >
                   <FormControlLabel
                     value="PayPal"
                     control={<Radio color="primary" />}
@@ -169,12 +199,14 @@ const ProcesoCompra = (props) => {
             <Typography variant="h6" className={classes.text_title}>
               ENVIO
             </Typography>
-            <Typography>Direccion: Calle 2, Cali, Colombia</Typography>
+            <Typography>
+              Direccion: {envio.direccion}, {envio.ciudad}, {envio.pais}
+            </Typography>
             <Divider className={classes.divider} />
             <Typography variant="h6" className={classes.text_title}>
               METODO DE PAGO
             </Typography>
-            <Typography>Metodo: PayPal</Typography>
+            <Typography>Metodo: {metodoPago}</Typography>
             <Divider className={classes.divider} />
             <Typography variant="h6" className={classes.text_title}>
               PRODUCTOS
@@ -279,7 +311,7 @@ const ProcesoCompra = (props) => {
                     </TableCell>
                     <TableCell>
                       <Typography className={classes.text_detalle}>
-                        ${Math.round(suma * 100) / 100 + 2 + 8}
+                        ${Math.round(suma) + 2 + 8}
                       </Typography>
                     </TableCell>
                   </TableRow>
