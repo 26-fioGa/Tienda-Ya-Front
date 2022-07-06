@@ -71,6 +71,7 @@ const ProcesoCompra = (props) => {
               <Grid item xs={12}>
                 <TextField
                   label="Direccion"
+                  variant="standard"
                   fullWidth
                   InputLabelProps={{
                     shrink: true,
@@ -80,6 +81,7 @@ const ProcesoCompra = (props) => {
               <Grid item xs={12}>
                 <TextField
                   label="Ciudad"
+                  variant="standard"
                   fullWidth
                   InputLabelProps={{
                     shrink: true,
@@ -89,6 +91,7 @@ const ProcesoCompra = (props) => {
               <Grid item xs={12}>
                 <TextField
                   label="Pais"
+                  variant="standard"
                   fullWidth
                   InputLabelProps={{
                     shrink: true,
@@ -136,6 +139,7 @@ const ProcesoCompra = (props) => {
               </Button>
               <Button
                 variant="contained"
+                className={classes.button}
                 color="primary"
                 onClick={continuarProceso}
               >
@@ -167,7 +171,7 @@ const ProcesoCompra = (props) => {
                     <TableCell>
                       <CardMedia
                         className={classes.imgProductoPC}
-                        image="https://firebasestorage.googleapis.com/v0/b/ecommerce-c0adb.appspot.com/o/images%2Fdefault.png?alt=media&token=122c101e-9ecd-48e6-9c21-3af821371de8"
+                        image="https://tottope.vteximg.com.br/arquivos/ids/167188-1000-1000/PILIGRAM-H-1810-V07_A.png?v=636723781789170000"
                         title="Imagen en Carrito"
                       />
                     </TableCell>

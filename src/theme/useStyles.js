@@ -3,58 +3,70 @@ import { createMuiTheme, makeStyles } from '@material-ui/core';
 const theme = createMuiTheme();
 
 const useStyles = makeStyles({
-    card : {
+    card: {
         padding: 30
     },
-    form : {
+    form: {
         marginTop: 40,
         marginBottom: 10
     },
-    gridmb : {
+    gridmb: {
         marginBottom: 20
     },
-    link : {
+    link: {
         display: 'block',
         marginTop: 8,
         fontSize: "1.1rem",
         fontFamily: "Roboto",
         lineHeight: 1.5,
-        color: theme.palette.primary.main,
+        color: '#5C718E',
         textDecoration: "none"
-    }, 
-    avatar : {
-        backgroundColor: '#0f80aa',  //0f80aa
+    },
+    avatar: {
+        backgroundColor: '#5C718E',
         width: 80,
         height: 80
     },
-    icon : {
-        fontSize: 60
+    icon: {
+        fontSize: 60,
     },
-    containermt : {
+    containermt: {
         marginTop: 30
     },
-    grow : {
+    grow: {
         flexGrow: 0,
         [theme.breakpoints.up('md')]: {
             flexGrow: 1
         }
     },
-    appBar : {
+    appBar: {
         paddingTop: 8,
-        paddingBottom: 8
+        paddingBottom: 8,
+        backgroundColor: '#5C718E',
     },
-    buttonIcon : {
+    button: {
+        backgroundColor: '#448885',
+        borderRadius: '20px',
+    },
+    securityImage: {
+        width: '80%',
+        margin: 'auto',
+        display: 'block',
+        position: 'relative',
+        top: '10%'
+    },
+    buttonIcon: {
         fontSize: '14px',
         padding: 0
     },
-    linkAppBarDesktop : {
+    linkAppBarDesktop: {
         display: "inline-flex",
         alignItems: "center",
         color: "inherit",
         textDecoration: "none",
         padding: "6px 16px"
     },
-    linkAppBarMobile : {
+    linkAppBarMobile: {
         display: "inline-flex",
         alignItems: "center",
         color: "inherit",
@@ -62,189 +74,192 @@ const useStyles = makeStyles({
         width: "100%",
         padding: "8px 16px 8px 16px"
     },
-    listItem : {
+    listItem: {
         padding: 0
     },
-    linkAppBarLogo : {
+    linkAppBarLogo: {
         display: "inline-flex",
         alignItems: "center",
         color: "inherit",
         textDecoration: "none",
     },
-    mr : {
+    mr: {
         marginRight: 3
     },
-    sectionDesktop : {
+    sectionDesktop: {
         display: 'none',
         [theme.breakpoints.up('md')]: {
             display: 'flex'
         }
     },
-    sectionMobile : {
+    sectionMobile: {
         display: 'flex',
         flexGrow: 1,
         [theme.breakpoints.up('md')]: {
             display: 'none'
         }
     },
-    list : {
+    list: {
         width: 250
     },
-    listItemIcon : {
+    listItemIcon: {
         minWidth: 35
     },
-    media : {  
-        height: 250,  
-        backgroundColor: "#F2F2F2", 
-        margin: "15px 15px 0 15px" 
+    media: {
+        height: 250,
+        backgroundColor: "#F2F2F2",
+        margin: "15px 15px 0 15px"
     },
-    text_card : {
-        fontWeight: "bold", 
-        color: "#656565",   
-        marginBottom: 8    
+    text_card: {
+        fontWeight: "bold",
+        color: "#656565",
+        marginBottom: 8
     },
-    price_card : {
-        fontWeight: "bold",  
-        marginBottom: 5  
+    price_card: {
+        fontWeight: "bold",
+        marginBottom: 5
     },
-    PaperImg : {
+    PaperImg: {
         backgroundColor: "#F2F2F2",
     },
-    mediaDetalle : {   
-        width: 300, /* cambiar de tamaño */
+    mediaDetalle: {
+        width: 300,
+        /* cambiar de tamaño */
         height: 380,
         margin: "auto",
     },
-    text_title : {
-        fontWeight: 600, 
-        color: "#494949",   
+    text_title: {
+        fontWeight: 600,
+        color: "#494949",
         marginBottom: 10
     },
-    price : {
+    price: {
         float: "right",
-        padding: "0 20px 0 20px", 
-        backgroundColor: "#0f80aa"
+        padding: "0 20px 0 20px",
+        backgroundColor: "#5C718E"
     },
     /* text_title_detalle : {
         fontWeight: 600, 
         color: "#494949",   
         marginBottom: 10
     }, */
-    text_detalle : {
-        fontWeight: 500, 
-        color: "#494949",   
+    text_detalle: {
+        fontWeight: 500,
+        color: "#494949",
         marginBottom: 5
     },
-    
-    imgProductoCC : {
+
+    imgProductoCC: {
         backgroundColor: "#F2F2F2",
         width: 80,
         height: 70
     },
-    paperPadding : {
+    paperPadding: {
         padding: 20
     },
-   
-    imgProductoPC : {
-        backgroundColor: "#F2F2F2", 
-        width: 50, 
-        height: 40 
+
+    imgProductoPC: {
+        backgroundColor: "#F2F2F2",
+        width: 50,
+        height: 40
     },
-    gridPC : {
-        margin: "auto", 
-        marginTop: 20 
+    gridPC: {
+        margin: "auto",
+        marginTop: 20
     },
-    divider : {
+    divider: {
         marginTop: 12,
-        marginBottom: 12 
+        marginBottom: 12
     },
-    buttonAnterior : {
-        marginRight: 8  
+    buttonAnterior: {
+        marginRight: 8
     },
-    formControl : {
+    formControl: {
         /*margin: 12,*/
         margin: theme.spacing(1),
-        minWidth: 120   
+        minWidth: 120
     },
-    gridLR : {
-        paddingLeft: 30,  
-        paddingRight: 30, 
-        paddingBottom: 20 
+    gridLR: {
+        paddingLeft: 30,
+        paddingRight: 30,
+        paddingBottom: 20
     },
-    
-    text_envio : {
-        lineHeight: 3 
+
+    text_envio: {
+        lineHeight: 3
     },
-    alertDelivered : {
-        marginTop: 5, 
-        padding: "15px 15px 5px 15px", 
-        marginBottom: 20, 
-        backgroundColor: "#d6f5d6"  
+    alertDelivered: {
+        marginTop: 5,
+        padding: "15px 15px 5px 15px",
+        marginBottom: 20,
+        backgroundColor: "#d6f5d6"
     },
-    alertNotDelivered : {
-        marginTop: 5, 
-        padding: "15px 15px 5px 15px", 
-        marginBottom: 20, 
-        backgroundColor: "#ffcccc"  
+    alertNotDelivered: {
+        marginTop: 5,
+        padding: "15px 15px 5px 15px",
+        marginBottom: 20,
+        backgroundColor: "#ffcccc"
     },
     /*  */
-    table : {
-        border: "1px solid #e0e0e0" 
+    table: {
+        border: "1px solid #e0e0e0"
     },
-    iconNotDelivered : {
-        color: "red", 
-        fontWeight: 900 
+    iconNotDelivered: {
+        color: "red",
+        fontWeight: 900
     },
-    iconDelivered : {
-        color: "green", 
-        fontWeight: 900 
+    iconDelivered: {
+        color: "green",
+        fontWeight: 900
     },
-    avatarPefil : { 
+    avatarPefil: {
         width: 130,
         height: 130,
-        backgroundColor: "#0f80aa"
+        backgroundColor: "#5C718E"
     },
-    imageUploader : { 
+    imageUploader: {
         padding: 0,
         margin: "-25px auto 15px",
         width: 0
     },
     /* ------ */
-    linkMenu : {
-        display: "inline-flex", 
-        alignItems: "center", 
-        color: "inherit", 
-        textDecoration: "none", 
-        padding: "6px 15px 6px 0", 
-        
+    linkMenu: {
+        display: "inline-flex",
+        alignItems: "center",
+        color: "inherit",
+        textDecoration: "none",
+        padding: "6px 15px 6px 0",
+
     },
     mrIcon: {
-        marginRight: 10 
+        marginRight: 10
     },
-    avatarPerfilAppBar : {
-        marginRight: 8,   
-        backgroundColor: "#F2F2F2" 
+    avatarPerfilAppBar: {
+        marginRight: 8,
+        backgroundColor: "#F2F2F2"
     },
-    
-     listSubItem : {
-        padding: "0 0 0 30px" 
+
+    listSubItem: {
+        padding: "0 0 0 30px"
     },
-    
-    checkbox : {
-        display: "block", 
-        padding: 0, 
-        marginTop: 5, 
-        marginBottom: 5 
+
+    checkbox: {
+        display: "block",
+        padding: 0,
+        marginTop: 5,
+        marginBottom: 5
     },
-    
-    buttonAgregar : {
-        float : "right"
+
+    buttonAgregar: {
+        float: "right",
+        backgroundColor: "#5C718E",
+        borderRadius: '20px',
     },
-   
-    avatarProducto : {
-        width: 175, 
+
+    avatarProducto: {
+        width: 175,
         height: 175,
-        backgroundColor: "#F2F2F2" 
+        backgroundColor: "#F2F2F2"
     },
 
 })

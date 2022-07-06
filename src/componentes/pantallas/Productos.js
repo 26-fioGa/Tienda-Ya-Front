@@ -93,6 +93,7 @@ const Productos = (props) => {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  className={classes.button}
                   onClick={() => verProducto(data)}
                 >
                   MAS DETALLES

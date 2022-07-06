@@ -1,28 +1,25 @@
 import {
-  MenuItem,
   Avatar,
   Button,
   Container,
-  FormControl,
   Grid,
-  InputLabel,
   Select,
   TextField,
   Typography,
+  MenuItem,
+  InputLabel,
+  FormControl,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useStyles from "../../../theme/useStyles";
 import ImageUploader from "react-images-upload";
-import {
-  getProducto,
-  actualizarProducto,
-} from "../../../actions/ProductoAction";
+import { registrarProducto } from "../../../actions/ProductoAction";
 import { v4 as uuidv4 } from "uuid";
 
-const EditarProducto = (props) => {
+const AgregarProducto = (props) => {
   const imagenDefault =
     "https://firebasestorage.googleapis.com/v0/b/ecommerce-c0adb.appspot.com/o/images%2Fdefault.png?alt=media&token=122c101e-9ecd-48e6-9c21-3af821371de8";
-  const [producto, setProducto] = useState({
+  const [producto, setProducto] = React.useState({
     id: 0,
     nombre: "",
     descripcion: "",
@@ -35,8 +32,8 @@ const EditarProducto = (props) => {
     imagenTemporal: null,
   });
 
-  const [categoria, setCategoria] = useState("");
-  const [marca, setMarca] = useState("");
+  const [categoria, setCategoria] = React.useState("");
+  const [marca, setMarca] = React.useState("");
 
   const handleCategoriaChange = (event) => {
     setCategoria(event.target.value);
@@ -46,9 +43,17 @@ const EditarProducto = (props) => {
     setMarca(event.target.value);
   };
 
+  const guardarProducto = async () => {
+    producto.categoriaId = categoria;
+    producto.marcaId = marca;
+
+    const resultado = await registrarProducto(producto);
+
+    props.history.push("/admin/listaProductos");
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setProducto((prev) => ({
       ...prev,
       [name]: value,
@@ -72,78 +77,58 @@ const EditarProducto = (props) => {
     }));
   };
 
-  useEffect(() => {
-    const id = props.match.params.id;
-    const getProductoAsync = async () => {
-      const response = await getProducto(id);
-      setProducto(response.data);
-      setCategoria(response.data.categoriaId);
-      setMarca(response.data.marcaId);
-    };
-    getProductoAsync();
-  }, []);
-
-  const guardarProducto = async () => {
-    producto.categoriaId = categoria;
-    producto.marcaId = marca;
-    const id = props.match.params.id;
-    const resultado = await actualizarProducto(id, producto);
-    console.log(resultado);
-    props.history.push("/admin/listaProductos");
-  };
+  const classes = useStyles();
 
   const keyImage = uuidv4();
 
-  const classes = useStyles();
   return (
     <Container className={classes.containermt}>
       <Grid container justify="center">
         <Grid item sm={6} xs={12}>
           <Typography variant="h4" className={classes.text_title}>
-            EDITAR PRODUCTO
+            AGREGAR PRODUCTO
           </Typography>
           <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
             <TextField
               label="Nombre Producto"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
-              /* para que el label se mantenga en la parte superior */
               InputLabelProps={{
                 shrink: true,
               }}
-              value={producto.nombre}
               name="nombre"
+              value={producto.nombre}
               onChange={handleChange}
             />
             <TextField
               label="Precio"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
                 shrink: true,
               }}
-              value={producto.precio}
               name="precio"
+              value={producto.precio}
               onChange={handleChange}
             />
 
             <TextField
               label="Stock"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
                 shrink: true,
               }}
-              value={producto.stock}
               name="stock"
+              value={producto.stock}
               onChange={handleChange}
             />
             <TextField
               label="Descripcion"
-              variant="outlined"
+              variant="standard"
               multiline
               rows={4}
               fullWidth
@@ -151,8 +136,8 @@ const EditarProducto = (props) => {
               InputLabelProps={{
                 shrink: true,
               }}
-              value={producto.descripcion}
               name="descripcion"
+              value={producto.descripcion}
               onChange={handleChange}
             />
 
@@ -174,7 +159,7 @@ const EditarProducto = (props) => {
               <InputLabel id="categoria-select-label">Categoria</InputLabel>
               <Select
                 labelId="categoria-select-label"
-                id="categria-select"
+                id="categoria-select"
                 value={categoria}
                 onChange={handleCategoriaChange}
               >
@@ -187,9 +172,9 @@ const EditarProducto = (props) => {
             <Grid container spacing={2}>
               <Grid item sm={6} xs={12}>
                 <ImageUploader
+                  withIcon={true}
                   singleImage={true}
                   key={keyImage}
-                  withIcon={true}
                   buttonText="Buscar Imagen"
                   imgExtension={[".jpg", ".jpeg", ".png", ".gif"]}
                   maxFileSize={5242880} /* bytes */
@@ -203,8 +188,6 @@ const EditarProducto = (props) => {
                   src={
                     producto.imagenTemporal
                       ? producto.imagenTemporal
-                      : producto.imagen
-                      ? producto.imagen
                       : imagenDefault
                   }
                 />
@@ -215,8 +198,9 @@ const EditarProducto = (props) => {
               variant="contained"
               color="primary"
               onClick={guardarProducto}
+              className={classes.button}
             >
-              ACTUALIZAR
+              AGREGAR
             </Button>
           </form>
         </Grid>
@@ -225,4 +209,4 @@ const EditarProducto = (props) => {
   );
 };
 
-export default EditarProducto;
+export default AgregarProducto;

@@ -104,6 +104,7 @@ const CarritoCompras = (props) => {
               variant="contained"
               color="primary"
               size="large"
+              className={classes.button}
               onClick={realizarCompra}
             >
               REALIZAR COMPRA

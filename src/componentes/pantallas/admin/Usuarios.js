@@ -55,7 +55,7 @@ const Usuarios = (props) => {
 
   return (
     <Container className={classes.containermt}>
-      <Typography variant="h4" className={classes.text_title}>
+      <Typography variant="h6" className={classes.text_title}>
         USUARIOS
       </Typography>
       <TableContainer>
@@ -70,7 +70,7 @@ const Usuarios = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginadorUsuarios.data?.map((usuario) => (
+            {paginadorUsuarios.data.map((usuario) => (
               <TableRow key={usuario.id}>
                 <TableCell>{usuario.id}</TableCell>
                 <TableCell>{usuario.nombre + " " + usuario.apellido}</TableCell>
@@ -80,6 +80,7 @@ const Usuarios = (props) => {
                   <Button
                     variant="contained"
                     color="primary"
+                    className={classes.button}
                     onClick={() => editaUsuario(usuario.id)}
                   >
                     <Icon>edit</Icon>
@@ -91,7 +92,7 @@ const Usuarios = (props) => {
         </Table>
       </TableContainer>
       <Pagination
-        count={paginadorUsuarios.PageCount}
+        count={paginadorUsuarios.pageCount}
         page={paginadorUsuarios.pageIndex}
         onChange={handleChange}
       />

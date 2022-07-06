@@ -105,6 +105,7 @@ const DetalleProducto = (props) => {
                     <TextField
                       id="cantidad-producto"
                       label=""
+                      variant="standard"
                       type="number"
                       value={cantidad}
                       onChange={(event) => setCantidad(event.target.value)}
@@ -121,6 +122,7 @@ const DetalleProducto = (props) => {
                       variant="contained"
                       color="primary"
                       size="large"
+                      className={classes.button}
                       onClick={agregarCarrito}
                     >
                       Agregar a Carrito

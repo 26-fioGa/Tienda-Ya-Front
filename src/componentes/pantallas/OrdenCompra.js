@@ -22,7 +22,7 @@ const OrdenCompra = (props) => {
   const classes = useStyles();
   return (
     <Container className={classes.containermt}>
-      <Typography variant="h5" className={classes.text_title}>
+      <Typography variant="h6" className={classes.text_title}>
         ORDEN DE COMPRA: {id.toUpperCase()}
       </Typography>
       <Grid container spacing={2} className={classes.paperPadding}>
@@ -148,26 +148,27 @@ const OrdenCompra = (props) => {
                   <TableCell colSpan={2}>
                     {/* Botones para el cliente */}
                     {/* <Button
-                                        variant="contained"
-                                        color="primary"
-                                        size="large"
-                                        fullWidth
-                                        className={classes.gridmb}
-                                        >
-                                            PayPal
-                                        </Button>
-                                        <Button
-                                        variant="contained"
-                                        size="large"
-                                        fullWidth
-                                        >
-                                            Tarjeta de Credito o Debito
-                                        </Button> */}
+                                      variant="contained"
+                                      color="primary"
+                                      size="large"
+                                      fullWidth
+                                      className={classes.gridmb}
+                                      >
+                                          PayPal
+                                      </Button>
+                                      <Button
+                                      variant="contained"
+                                      size="large"
+                                      fullWidth
+                                      >
+                                          Tarjeta de Credito o Debito
+                                      </Button> */}
 
                     {/* Boton para el Admin */}
                     <Button
                       variant="contained"
                       color="primary"
+                      className={classes.button}
                       size="large"
                       fullWidth
                     >

@@ -91,7 +91,7 @@ const AgregarProducto = (props) => {
           <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
             <TextField
               label="Nombre Producto"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
@@ -103,7 +103,7 @@ const AgregarProducto = (props) => {
             />
             <TextField
               label="Precio"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
@@ -116,7 +116,7 @@ const AgregarProducto = (props) => {
 
             <TextField
               label="Stock"
-              variant="outlined"
+              variant="standard"
               fullWidth
               className={classes.gridmb}
               InputLabelProps={{
@@ -128,7 +128,7 @@ const AgregarProducto = (props) => {
             />
             <TextField
               label="Descripcion"
-              variant="outlined"
+              variant="standard"
               multiline
               rows={4}
               fullWidth
@@ -198,6 +198,7 @@ const AgregarProducto = (props) => {
               variant="contained"
               color="primary"
               onClick={guardarProducto}
+              className={classes.button}
             >
               AGREGAR
             </Button>
